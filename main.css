@@ -1,0 +1,289 @@
+/* mały reset */
+body,html {
+    margin:0;
+    padding:0;
+    font-family: 'Bree Serif', serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #414142;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: #4d4d4d;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .nav > .nav-btn > label:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color: #333;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) + .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked + .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+
+.wrapper {
+  height: 100vh;
+  /* scaling of images would add horizontal scrollbar so disable x overflow */
+  overflow-x: hidden;
+  /* scrolling on the page */
+  overflow-y: auto;
+  perspective: 20px;
+}
+
+.section {
+  /* Needed for children to be absolutely positioned relative to the parent. */
+  position: relative;
+  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #414142;
+  text-shadow: 0 0 5px #000;
+}
+
+.parallax::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  /* Move the pseudo-element back away from the camera,
+   * then scale it back up to fill the viewport.
+   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+  transform: translateZ(-10px) scale(1.5);
+  /* Force the background image to fill the whole element. */
+  background-size: 100%;
+  /* Keep the image from overlapping sibling elements. */ 
+  z-index: -1;
+}
+
+.static {
+  background: black;
+  color: #414142;
+}
+
+.bg1::after {
+  background-image: url('game/img/wp2013751.jpg');
+}
+
+.bg2::after {
+  background-image: url('game/img/10634997144.jpg');
+}
+
+.bg3::after {
+    background-image: url('game/img/willYouShare.jpg');
+}
+
+h1 {
+    font-size: 2em;
+    margin: 1.5em 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+h2 {
+    margin: 1.2em 0;
+    font-weight: normal;
+}
+ 
+p {
+    margin: 1em 0;
+
+}
+
+a:link {
+    color: #D64078;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #D64078;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+  
+a:active {
+    background-color: black;
+    color: white;
+}
+
+.material-button-raised {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0 8px;
+    border: none;
+    border-radius: 2px;
+    padding: 0 16px;
+    min-width: 64px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #2196f3;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 36px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  
+  .material-button-raised:hover,
+  .material-button-raised:focus {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+  
+  .material-button-raised:active {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .material-button-raised:disabled {
+    color: rgba(0, 0, 0, 0.38);
+    background-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+    cursor: initial;
+  }
+  
+  .material-button-raised::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .material-button-raised:hover::before {
+    opacity: 0.12;
+  }
+  
+  .material-button-raised:focus::before {
+    opacity: 0.2;
+  }
+  
+  .material-button-raised:active::before {
+    opacity: 0.32;
+  }
+  
+  .material-button-raised:disabled::before {
+    opacity: 0;
+  }
+  
+  .material-button-raised::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 18px;
+    border-radius: 50%;
+    padding: 50%;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) ;
+    transition: opacity 1s, transform 0.5s;
+  }
+  
+  .material-button-raised:active::after {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0s;
+  }
+  
+  .material-button-raised:disabled::after {
+    opacity: 0;
+  }
+  

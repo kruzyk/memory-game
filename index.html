@@ -4,123 +4,71 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Memory game</title>
+    <title>Train your brain!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-    <style>
-        body {
-            background: url(img/wp2013751.jpg);
-            width: 100vh;
-            height: 100vh;
-            margin: auto auto;
-            padding: 0;
-            display: grid;
-            grid-template-columns: 25% 25% 25% 25%;
-            grid-template-rows: 25% 25% 25% 25%;
-        }
-
-        .card {
-            background: url(img/tile_bg.jpg) no-repeat;
-            background-size: contain;
-            border-top: 1px solid #C66;
-            border-bottom: 1px solid #6C6;
-            border-left: 1px solid #66C;
-            border-right: 1px solid #CC6;
-            width: 20vh;
-            height: 20vh;
-            margin: 10px;
-            padding: 10px;
-            font-size: 64px;
-            cursor: pointer;
-            text-align: center;
-        }
-    </style>
 </head>
 
-<body id="board">
+<body>
+    <nav>
+        <div class="nav">
+            <div class="nav-header">
+                <div class="nav-title">
+                    TrainUrBrain
+                </div>
+            </div>
+            <div class="nav-btn">
+                <label for="nav-check">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+            <input type="checkbox" id="nav-check">
+            <div class="nav-links">
+                <a href="/" target="_blank">Start</a>
+                <a href="#1" target="_blank">Ułatwienie</a>
+                <a href="#2" target="_blank">Zabawa</a>
+                <a href="#3" target="_blank">Nauka</a>
+                <a href="#4" target="_blank">Dzielenie się</a>
+            </div>
+        </div>
+    </nav>
+    <main class="wrapper">
+        <section class="section parallax bg1">
+            <div>
+                <h1>Twój mózg potrzebuje treningu!</h1>
+            </div>
+        </section>
+        <section id="1" class="section static">
+            <div>
+                <h2>Nie zapominaj</h2>
+                <p>Ćwicz pamięć i ułatwiaj sobie życie.</p>
+            </div>
+        </section>
+        <section id="2" class="section parallax bg2">
+            <div>
+                <h2>Baw się</h2>
+                <p>Możesz ćwiczyć i świetnie się przy tym bawić!</p>
+            </div>
+        </section>
+        <section id="3" class="section static">
+            <div>
+                <h2>Ucz się</h2>
+                <p>Bawiąc się być może nauczysz się czegoś nowego.</p>
+            </div>
+        </section>
+        <section id="4" class="section parallax bg3">
+            <div>
+                <h2>Podzielisz się?</h2>
+                <p>Podziel się naszą stroną i zagraj w grę.</p>
+                <button class="material-button-raised">Gram w grę!</button>
+            </div>
+        </section>
+        </section>
+    </main>
 
-    <script>
-        // making cards / content
-        var memoryArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
-        var memoryValues = [];
-        var memoryTileIds = [];
-        var tilesFlipped = 0;
-
-        // I want to shuffle cards
-        Array.prototype.memoryTileShuffle = function () {
-            var i = this.length
-            var j;
-            var temp;
-            while (--i > 0) {
-                j = Math.floor(Math.random() * (i + 1));
-                temp = this[j];
-                this[j] = this[i];
-                this[i] = temp;
-            }
-        }
-
-        // I want to make new board
-        function newBoard() {
-            tilesFlipped = 0;
-            var output = '';
-            memoryArray.memoryTileShuffle();
-            for (var i = 0; i < memoryArray.length; i++) {
-                output += '<div class="card" id="tile_' + i + '" onclick="memoryFlipTile(this,\'' + memoryArray[i] + '\')"></div>';
-            }
-            document.getElementById('board').innerHTML = output;
-        }
-function memoryFlipTile(tile,val) {
-    // flipping image
-    if(tile.innerHTML == '' && memoryValues.length <2) {
-        tile.style.background = '#fff';
-        tile.innerHTML = '<img src="img/cards/' + val + '">';
-        // remember first choice
-        if(memoryValues.length == 0) {
-            memoryValues.push(val);
-            memoryTileIds.push(tile.id);
-            // and remember second choice
-        } else if (memoryValues.length == 1) {
-            memoryValues.push(val);
-            memoryTileIds.push(tile.id);
-            // check that first card is the sam as second
-            if(memoryValues[0] == memoryValues[1]) {
-                tilesFlipped += 2;
-                // clear both arrays
-                memoryValues = [];
-                memoryTileIds = [];
-                // check to see if the whole board is cleared
-                if(tilesFlipped == memoryArray.length) {
-                    // document.getElementById('board').innerHTML = '<div class="popup">You finished. I will restart game for you.<br><button></button></div>';
-                    alert('You finished. I will restart game for you.');
-                    document.getElementById('board').innerHTML = '';
-                    newBoard();
-                }
-                // if there is no match
-            } else {
-                function flip2Back() {
-                    // flip the 2 tile back over
-                    var tile_1 = document.getElementById(memoryTileIds[0]);
-                    var tile_2 = document.getElementById(memoryTileIds[1]);
-                    tile_1.style.background = 'url(img/tile_bg.jpg) no-repeat';
-                    tile_1.style.backgroundSize = 'contain';
-                    tile_1.innerHTML = '';
-                    tile_2.style.background = 'url(img/tile_bg.jpg) no-repeat';
-                    tile_2.style.backgroundSize = 'contain';
-                    tile_2.innerHTML = '';
-                    // clear both arrays
-                    memoryValues = [];
-                    memoryTileIds = [];
-                }
-                // set time for visible cards
-                setTimeout(flip2Back, 700);
-            }
-        }
-    }
-}
-
-        newBoard();
-    </script>
 </body>
 
 </html>
