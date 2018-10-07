@@ -74,7 +74,7 @@ function memoryFlipTile(tile,val) {
     // flipping image
     if(tile.innerHTML == '' && memoryValues.length <2) {
         tile.style.background = '#fff';
-        tile.innerHTML = '<img src="img/' + val + '">';
+        tile.innerHTML = '<img src="img/cards/' + val + '">';
         // remember first choice
         if(memoryValues.length == 0) {
             memoryValues.push(val);
@@ -91,6 +91,7 @@ function memoryFlipTile(tile,val) {
                 memoryTileIds = [];
                 // check to see if the whole board is cleared
                 if(tilesFlipped == memoryArray.length) {
+                    // document.getElementById('board').innerHTML = '<div class="popup">You finished. I will restart game for you.<br><button></button></div>';
                     alert('You finished. I will restart game for you.');
                     document.getElementById('board').innerHTML = '';
                     newBoard();
