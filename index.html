@@ -1,5 +1,6 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,41 +9,47 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
     <style>
-    div#board {
-        background: #ccc;
-        border: #999 solid 1px;
-        width: 800px;
-        height: 540px;
-        padding: 24px;
-        margin: 0px auto;
-    }
-    div#board > div {
-        background: url(tile_bg.jpg) no-repeat;
-        border: 1px solid #000;
-        width: 71px;
-        height: 71px;
-        float: left;
-        margin 10px;
-        padding: 20px;
-        font-size: 64px;
-        cursor: pointer;
-        text-align: center;
-    }
+        div#board {
+            background: #ccc;
+            border: #999 solid 1px;
+            width: 800px;
+            height: 540px;
+            padding: 24px;
+            margin: 0px auto;
+        }
+
+        div#board>div {
+            background: url(tile_bg.jpg) no-repeat;
+            border: 1px solid #000;
+            width: 71px;
+            height: 71px;
+            float: left;
+            margin 10px;
+            padding: 20px;
+            font-size: 64px;
+            cursor: pointer;
+            text-align: center;
+        }
     </style>
+</head>
+
+<body>
+    <div id="board">
+    </div>
     <script>
         // making cards / content
-        var memoryArray = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+        var memoryArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J', 'K', 'K', 'L', 'L'];
         var memoryValues = [];
         var memoryTileIds = [];
         var tilesFlipped = 0;
 
         // I want to shuffle cards
-        Array.prototype.memoryTileShuffle = function() {
+        Array.prototype.memoryTileShuffle = function () {
             var i = this.length
             var j;
             var temp;
-            while(--i > 0) {
-                j = Math.floor(Math.random() * (i+1));
+            while (--i > 0) {
+                j = Math.floor(Math.random() * (i + 1));
                 temp = this[j];
                 this[j] = this[i];
                 this[i] = temp;
@@ -50,12 +57,17 @@
         }
 
         // I want to make new board
-        
+        function newBoard() {
+            tilesFlipped = 0;
+            var output = '';
+            memoryArray.memoryTileShuffle();
+            for (var i = 0; i < memoryArray.length; i++) {
+                output += '<div id="tile_' + i + '" onclick="memoryFlipTile(this,\'' + memoryArray[i] + '\')"></div>';
+            }
+            document.getElementById('board').innerHTML = output;
+        }
+        newBoard();
     </script>
-</head>
-<body>
-    <div id="board">
-
-    </div>
 </body>
+
 </html>
