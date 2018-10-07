@@ -19,6 +19,7 @@
             grid-template-columns: 25% 25% 25% 25%;
             grid-template-rows: 25% 25% 25% 25%;
         }
+
         .card {
             background: url(img/tile_bg.jpg) no-repeat;
             background-size: contain;
@@ -38,8 +39,7 @@
 </head>
 
 <body id="board">
-    
-    
+
     <script>
         // making cards / content
         var memoryArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
@@ -70,6 +70,51 @@
             }
             document.getElementById('board').innerHTML = output;
         }
+function memoryFlipTile(tile,val) {
+    if(tile.innerHTML == '' && memoryValues.length <2) {
+        tile.style.background = '#fff';
+        tile.innerHTML = val;
+        // remember first choice
+        if(memoryValues.length == 0) {
+            memoryValues.push(val);
+            memoryTileIds.push(tile.id);
+            // and remember second choice
+        } else if (memoryValues.length == 1) {
+            memoryValues.push(val);
+            memoryTileIds.push(tile.id);
+            // check that first card is the sam as second
+            if(memoryValues[0] == memoryValues[1]) {
+                tilesFlipped += 2;
+                // clear both arrays
+                memoryValues = [];
+                memoryTileIds = [];
+                // check to see if the whole board is cleared
+                if(tilesFlipped == memoryArray.length) {
+                    alert('Board cleared... generating new board');
+                    document.getElementById('board').innerHTML = '';
+                    newBoard();
+                }
+                // if there is no match
+            } else {
+                function flip2Back() {
+                    // flip the 2 tile back over
+                    var tile_1 = document.getElementById(memoryTileIds[0]);
+                    var tile_2 = document.getElementById(memoryTileIds[1]);
+                    tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+                    tile_1.innerHTML = '';
+                    tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+                    tile_2.innerHTML = '';
+                    // clear both arrays
+                    memoryValues = [];
+                    memoryTileIds = [];
+                }
+                // set time for visible cards
+                setTimeout(flip2Back, 700);
+            }
+        }
+    }
+}
+
         newBoard();
     </script>
 </body>
