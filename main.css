@@ -55,7 +55,7 @@ body,html {
     display: none;
   }
 
-  #2 p, #2 h2, #4 p, #4 h2 {
+  #2 div > p, #2 div > h2, #4 div > p, #4 div > h2 {
     color: #efefef;
   }
   
