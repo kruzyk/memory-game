@@ -54,6 +54,10 @@ body,html {
   .nav > #nav-check {
     display: none;
   }
+
+  #2 p, #2 h2, #4 p, #4 h2 {
+    color: #efefef;
+  }
   
   @media (max-width:600px) {
     .nav > .nav-btn {
