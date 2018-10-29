@@ -55,7 +55,8 @@ body,html {
     display: none;
   }
 
-  #2 div > p, #2 div > h2, #4 div > p, #4 div > h2 {
+  .brighterTxt p,
+  .brighterTxt h2 {
     color: #efefef;
   }
   
