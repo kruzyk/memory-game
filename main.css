@@ -57,7 +57,7 @@ body,html {
 
   .brighterTxt p,
   .brighterTxt h2 {
-    color: #efefef;
+    color: #fff;
   }
   
   @media (max-width:600px) {
